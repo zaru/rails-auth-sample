@@ -1,0 +1,7 @@
+<h1>top</h1>
+<%= current_user.inspect %>
+
+<ul>
+  <li><%= link_to 'sign in', sign_in_path %></li>
+  <li><%= link_to 'sign out', sign_out_path, method: "DELETE" %></li>
+</ul>
