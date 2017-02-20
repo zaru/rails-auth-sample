@@ -7,7 +7,12 @@ Rails.application.routes.draw do
   namespace :user do
     resources :registrations, only: [:new, :create]
     resources :sessions, only: :create
+    resources :password_resets, onlye: [:new, :create, :edit, :update]
   end
 
   resources :users, only: :show
+
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
 end
