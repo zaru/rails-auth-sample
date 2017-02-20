@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :registrations, only: [:new, :create]
     resources :sessions, only: :create
     resources :password_resets, onlye: [:new, :create, :edit, :update]
+    get "mail_activate/:activate_code", controller: "mail_activate", action: "create", as: "mail_activate"
   end
 
   resources :users, only: :show
