@@ -36,4 +36,16 @@ class ArticlePolicy < ApplicationPolicy
   def destroy?
     record.user_id == user.id || user.admin?
   end
+
+  def description?
+    user.admin?
+  end
+
+  def permitted_attributes
+    if user.admin?
+      [:title, :description]
+    else
+      [:title]
+    end
+  end
 end
