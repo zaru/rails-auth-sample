@@ -7,7 +7,7 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.all
+    @articles = policy_scope(Article)
   end
 
   # GET /articles/1
@@ -73,7 +73,7 @@ class ArticlesController < ApplicationController
     end
 
     def authorize_article
-      authorize Article
+      authorize policy_scope(Article)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

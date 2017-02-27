@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :articles
   acts_as_authentic
 
   def deliver_mail_activate_instructions!

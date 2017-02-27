@@ -1,10 +1,16 @@
 class ArticlePolicy < ApplicationPolicy
+  class Scope < Scope
+    def resolve
+      scope.where(user_id: user.id)
+    end
+  end
+
   def index?
     true
   end
 
   def show?
-    true
+    record.user_id == user.id
   end
 
   def create?
@@ -16,7 +22,7 @@ class ArticlePolicy < ApplicationPolicy
   end
 
   def update?
-    true
+    record.user_id == user.id
   end
 
   def edit?
@@ -24,6 +30,6 @@ class ArticlePolicy < ApplicationPolicy
   end
 
   def destroy?
-    true
+    record.user_id == user.id
   end
 end
