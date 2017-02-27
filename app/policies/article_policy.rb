@@ -34,7 +34,7 @@ class ArticlePolicy < ApplicationPolicy
   end
 
   def destroy?
-    record.user_id == user.id || user.admin?
+    user.admin?
   end
 
   def description?
