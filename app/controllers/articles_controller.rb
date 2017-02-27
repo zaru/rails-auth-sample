@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_article, only: [:index, :new, :create]
   before_action :require_login
   after_action :verify_authorized
 
@@ -68,6 +69,11 @@ class ArticlesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_article
       @article = Article.find(params[:id])
+      authorize @article
+    end
+
+    def authorize_article
+      authorize Article
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
