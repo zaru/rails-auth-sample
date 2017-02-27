@@ -1,7 +1,11 @@
 class ArticlePolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.where(user_id: user.id)
+      if user.admin?
+        scope.all
+      else
+        scope.where(user_id: user.id)
+      end
     end
   end
 
@@ -10,7 +14,7 @@ class ArticlePolicy < ApplicationPolicy
   end
 
   def show?
-    record.user_id == user.id
+    record.user_id == user.id || user.admin?
   end
 
   def create?
@@ -22,7 +26,7 @@ class ArticlePolicy < ApplicationPolicy
   end
 
   def update?
-    record.user_id == user.id
+    record.user_id == user.id || user.admin?
   end
 
   def edit?
@@ -30,6 +34,6 @@ class ArticlePolicy < ApplicationPolicy
   end
 
   def destroy?
-    record.user_id == user.id
+    record.user_id == user.id || user.admin?
   end
 end

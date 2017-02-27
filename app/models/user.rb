@@ -2,6 +2,8 @@ class User < ApplicationRecord
   has_many :articles
   acts_as_authentic
 
+  enum role: { normal: 0, admin: 1 }
+
   def deliver_mail_activate_instructions!
     NotifierMailer.mail_activate_instructions(self).deliver_now
   end
