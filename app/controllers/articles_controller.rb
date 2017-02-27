@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
   before_action :require_login
+  after_action :verify_authorized
 
   # GET /articles
   # GET /articles.json
